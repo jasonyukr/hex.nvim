@@ -7,7 +7,7 @@ M.cfg = {
   dump_cmd = 'xxd -g 1 -u',
   assemble_cmd = 'xxd -r',
   is_file_binary_pre_read = function()
-    binary_ext = { 'out', 'bin', 'png', 'jpg', 'jpeg', 'exe', 'dll', 'class', 'gif', 'jar', 'zip', '7z', 'gz', 'tar' }
+    binary_ext = { 'out', 'bin', 'png', 'jpg', 'jpeg', 'gif', 'exe', 'dll', 'so', 'o', 'class', 'jar', 'zip', '7z', 'gz', 'tar' }
     -- only work on normal buffers
     if vim.bo.ft ~= "" then return false end
     -- check -b flag
@@ -20,7 +20,7 @@ M.cfg = {
     return false
   end,
   is_file_binary_post_read = function()
-    text_ext = { 'txt', 'java', 'c', 'cpp', 'h', 'hpp', 'go', 'py', 'rs', 'yml', 'json' }
+    text_ext = { 'txt', 'java', 'c', 'cpp', 'h', 'hpp', 'go', 'py', 'rs', 'yml', 'json', 'Makefile', 'mk', 'sh', 'html', 'md' }
     local ext = vim.fn.expand('%:e')
     if vim.tbl_contains(text_ext, ext) then return false end
     local encoding = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc
